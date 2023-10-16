@@ -8,7 +8,7 @@ pipeline {
         }
         stage("Show Date"){
             steps{
-            date
+            sh "date"
             }
         }
     }
