@@ -1,6 +1,4 @@
 pipeline{
-
-    agent any
     stages {
       stage("Cloning the project...") {
         steps {
@@ -9,17 +7,21 @@ pipeline{
       }
 
       stage("Compilation using Maven") {
-        steps{
+        steps {
             sh "./mvnw clean install -DskipTests"
         }
       }
 
       stage("Tests and Deployment") {
         stage("Running unit tests") {
-          sh "./mvnw test -Punit"
+            steps {
+                sh "./mvnw test -Punit"
+            }
         }
         stage("Deployment") {
-          sh 'nohup ./mvnw spring-boot:run -Dserver.port=8001 &'
+            steps {
+                sh 'nohup ./mvnw spring-boot:run -Dserver.port=8001 &'
+            }
         }
       }
     }
