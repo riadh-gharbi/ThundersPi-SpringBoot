@@ -12,7 +12,7 @@ pipeline{
         }
       }
 
-      stage("Tests and Deployment") {
+      stages("Tests and Deployment") {
         stage("Running unit tests") {
             steps {
                 sh "./mvnw test -Punit"
