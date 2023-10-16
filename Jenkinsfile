@@ -15,16 +15,11 @@ pipeline{
       }
 
       stage("Tests and Deployment") {
-
         stage("Running unit tests") {
-            steps {
-                sh "./mvnw test -Punit"
-            }
+          sh "./mvnw test -Punit"
         }
         stage("Deployment") {
-            steps{
-                sh 'nohup ./mvnw spring-boot:run -Dserver.port=8001 &'
-          }
+          sh 'nohup ./mvnw spring-boot:run -Dserver.port=8001 &'
         }
       }
     }
